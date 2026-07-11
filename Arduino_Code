@@ -1,0 +1,37 @@
+/*
+  Smart Temperature Monitor
+  Author : Pavan kumar
+*/
+
+const int sensorPin = A0;
+const int ledPin = 8;
+
+float temperature;
+
+void setup()
+{
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int sensorValue = analogRead(sensorPin);
+
+  temperature = sensorValue * 0.48828125;
+
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" °C");
+
+  if (temperature > 30)
+  {
+    digitalWrite(ledPin, HIGH);
+  }
+  else
+  {
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(1000);
+}
